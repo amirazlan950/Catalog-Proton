@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proton Catalogue — Amir Azlan, Proton Sales Advisor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0b0c0e;
+    --steel:#1c1e22;
+    --line:#2a2d32;
+    --line-soft:rgba(255,255,255,.09);
+    --paper:#ffffff;
+    --fog:#f1f1ee;
+    --graphite:#55585f;
+    --graphite-soft:#8a8d94;
+    --crimson:#e2071a;
+    --crimson-dark:#b3050f;
+    --wa:#25d366;
+    --wa-dark:#1ea952;
+    --radius-s:2px;
+    --radius-m:4px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Oswald',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.01em;
+    margin:0;
+  }
+  a{color:inherit;}
+  button{font-family:inherit;cursor:pointer;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+  img{max-width:100%;display:block;}
+
+  /* ---------- NAV ---------- */
+  header.site{
+    position:sticky;top:0;z-index:50;
+    background:var(--ink);
+    border-bottom:1px solid var(--line);
+  }
+  .navbar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 24px;max-width:1180px;margin:0 auto;
+  }
+  .wordmark{
+    font-family:'Oswald',sans-serif;font-weight:700;font-size:22px;color:#fff;
+    letter-spacing:.06em;display:flex;align-items:baseline;gap:8px;
+  }
+  .wordmark span{color:var(--crimson);font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;font-family:'Inter',sans-serif;}
+  nav.links{display:flex;gap:28px;}
+  nav.links button{
+    background:none;border:none;color:#c7c9cd;font-size:14px;font-weight:600;
+    padding:6px 0;border-bottom:2px solid transparent;
+  }
+  nav.links button:hover, nav.links button.active{color:#fff;border-color:var(--crimson);}
+  .nav-cta{
+    display:flex;align-items:center;gap:8px;background:var(--wa);color:#062b16;
+    padding:9px 16px;border-radius:999px;font-weight:700;font-size:13px;
+    text-decoration:none;border:none;
+  }
+  .nav-cta:hover{background:var(--wa-dark);color:#fff;}
+  .burger{display:none;background:none;border:1px solid var(--line);color:#fff;padding:8px 10px;border-radius:4px;}
+
+  /* ---------- HERO ---------- */
+  section.hero{
+    background:var(--ink);color:#fff;
+    padding:72px 0 40px;
+    border-bottom:1px solid var(--line);
+    position:relative;overflow:hidden;
+  }
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:end;}
+  .hero-eyebrow{color:var(--crimson);font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px;}
+  .hero h1{font-size:clamp(40px,6vw,74px);line-height:.98;font-weight:700;}
+  .hero h1 em{font-style:normal;color:var(--graphite-soft);}
+  .hero p.lead{margin-top:22px;color:#c7c9cd;font-size:17px;max-width:44ch;line-height:1.5;}
+  .hero-actions{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap;}
+  .btn{
+    font-weight:700;font-size:14px;padding:14px 26px;border-radius:2px;border:1px solid transparent;
+    display:inline-flex;align-items:center;gap:10px;text-decoration:none;
+  }
+  .btn-primary{background:var(--crimson);color:#fff;}
+  .btn-primary:hover{background:var(--crimson-dark);}
+  .btn-ghost{background:transparent;color:#fff;border-color:var(--line-soft);}
+  .btn-ghost:hover{border-color:#fff;}
+  .btn-wa{background:var(--wa);color:#062b16;}
+  .btn-wa:hover{background:var(--wa-dark);color:#fff;}
+
+  .advisor-card{
+    background:var(--steel);border:1px solid var(--line);padding:26px;border-radius:4px;
+  }
+  .advisor-card .role{color:var(--crimson);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;}
+  .advisor-card h3{font-size:26px;margin-top:8px;color:#fff;}
+  .advisor-card .dealer{color:var(--graphite-soft);font-size:13px;margin-top:6px;}
+  .advisor-card .phone-row{
+    display:flex;align-items:center;justify-content:space-between;margin-top:20px;
+    padding-top:18px;border-top:1px solid var(--line-soft);
+  }
+  .advisor-card .phone{font-family:'Oswald',sans-serif;font-size:22px;color:#fff;letter-spacing:.02em;}
+  .advisor-card .phone-label{font-size:11px;color:var(--graphite-soft);text-transform:uppercase;letter-spacing:.1em;}
+
+  /* model rail */
+  .rail-outer{background:var(--ink);padding-bottom:0;}
+  .rail{display:flex;gap:14px;overflow-x:auto;padding:26px 24px 34px;max-width:1180px;margin:0 auto;scrollbar-width:thin;}
+  .rail::-webkit-scrollbar{height:6px;}
+  .rail::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px;}
+  .rail-chip{
+    flex:0 0 auto;background:var(--steel);border:1px solid var(--line);border-radius:4px;
+    padding:14px 18px;min-width:168px;color:#fff;text-align:left;
+  }
+  .rail-chip:hover{border-color:var(--crimson);}
+  .rail-chip .rc-name{font-family:'Oswald',sans-serif;font-size:17px;letter-spacing:.02em;}
+  .rail-chip .rc-tag{color:var(--graphite-soft);font-size:11px;margin-top:2px;text-transform:uppercase;letter-spacing:.06em;}
+  .rail-chip .rc-price{color:var(--crimson);font-size:12px;margin-top:10px;font-weight:700;}
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section{padding:64px 0;}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:34px;flex-wrap:wrap;}
+  .section-head h2{font-size:clamp(28px,3.6vw,40px);}
+  .section-head p{color:var(--graphite);max-width:52ch;font-size:15px;margin-top:8px;}
+  .kicker{font-size:12px;font-weight:700;color:var(--crimson);letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px;}
+
+  /* ---------- MODEL CARDS ---------- */
+  .model-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .model-card{
+    border:1px solid #e3e3de;border-radius:4px;overflow:hidden;background:var(--paper);
+    transition:box-shadow .15s ease;
+  }
+  .model-card.open{box-shadow:0 12px 34px rgba(0,0,0,.09);grid-column:1 / -1;}
+  .mc-top{padding:0 0 20px;cursor:pointer;background:var(--fog);display:flex;flex-direction:column;gap:14px;}
+  .mc-top:hover .mc-photo{border-color:var(--crimson);}
+  .mc-top-text{padding:0 24px;display:flex;flex-direction:column;gap:14px;}
+  .mc-photo{
+    width:100%;height:180px;position:relative;overflow:hidden;background:#e6e5e0;
+    border-bottom:1px dashed #c9c8c1;
+  }
+  .mc-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+  .mc-photo-fallback{
+    display:none;position:absolute;inset:0;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+    color:var(--graphite-soft);background:var(--fog);
+  }
+  .mc-photo-fallback svg{height:44px;width:auto;opacity:.6;}
+  .mc-photo-fallback span{font-size:11px;font-family:'Inter',sans-serif;letter-spacing:.02em;background:#fff;border:1px dashed #c9c8c1;padding:4px 10px;border-radius:999px;}
+  .mc-icon{width:100%;height:88px;display:flex;align-items:center;justify-content:center;}
+  .mc-icon svg{height:56px;width:auto;}
+  .mc-tag{font-size:11px;color:var(--crimson);font-weight:700;letter-spacing:.1em;text-transform:uppercase;}
+  .mc-name{font-size:26px;letter-spacing:.01em;margin-top:2px;}
+  .mc-price{font-size:13px;color:var(--graphite);margin-top:2px;}
+  .mc-price b{color:var(--ink);font-family:'Oswald',sans-serif;font-size:16px;}
+  .mc-toggle{
+    align-self:flex-start;font-size:12px;font-weight:700;color:var(--ink);
+    display:flex;align-items:center;gap:6px;margin-top:4px;
+  }
+  .mc-toggle svg{transition:transform .2s ease;}
+  .model-card.open .mc-toggle svg{transform:rotate(180deg);}
+
+  .mc-detail{display:none;padding:22px 24px 28px;border-top:1px solid #e3e3de;}
+  .model-card.open .mc-detail{display:block;}
+
+  .variant-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;}
+  .vtab{
+    border:1px solid #d8d7d1;background:var(--paper);padding:8px 14px;font-size:13px;font-weight:600;
+    border-radius:999px;color:var(--graphite);
+  }
+  .vtab.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+
+  .price-block{display:grid;grid-template-columns:minmax(260px,1.1fr) minmax(260px,1fr);gap:32px;align-items:start;}
+  .otr-figure{
+    background:var(--ink);color:#fff;padding:22px;border-radius:4px;
+  }
+  .otr-figure .label{font-size:11px;color:var(--graphite-soft);text-transform:uppercase;letter-spacing:.1em;}
+  .otr-figure .amount{font-family:'Oswald',sans-serif;font-size:34px;margin-top:6px;}
+  .otr-figure .sub{font-size:12px;color:var(--graphite-soft);margin-top:10px;line-height:1.5;}
+  .install-row{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
+  .install-pill{background:var(--steel);border:1px solid var(--line);padding:8px 12px;border-radius:4px;font-size:12px;flex:1;min-width:100px;}
+  .install-pill .yrs{color:var(--graphite-soft);display:block;font-size:10px;text-transform:uppercase;letter-spacing:.08em;}
+  .install-pill .amt{font-family:'Oswald',sans-serif;font-size:16px;color:#fff;}
+
+  .spec-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px 18px;}
+  .spec-list li{font-size:13.5px;color:var(--graphite);padding-left:14px;position:relative;line-height:1.45;}
+  .spec-list li::before{content:"";position:absolute;left:0;top:7px;width:6px;height:6px;background:var(--crimson);}
+  .spec-note{font-size:11px;color:var(--graphite-soft);margin-top:10px;}
+
+  .colour-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+  .swatch{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--graphite);}
+  .dot{width:16px;height:16px;border-radius:50%;border:1px solid #d8d7d1;}
+
+  .detail-actions{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;}
+  .btn-dark{background:var(--ink);color:#fff;border:none;padding:13px 20px;font-size:13px;font-weight:700;border-radius:2px;}
+  .btn-dark:hover{background:#000;}
+  .btn-outline{background:transparent;border:1px solid var(--ink);color:var(--ink);padding:13px 20px;font-size:13px;font-weight:700;border-radius:2px;}
+
+  /* ---------- CALCULATOR ---------- */
+  section.calc{background:var(--fog);}
+  .calc-panel{
+    display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--paper);border:1px solid #e3e3de;border-radius:6px;overflow:hidden;
+  }
+  .calc-form{padding:34px;}
+  .calc-result{padding:34px;background:var(--ink);color:#fff;}
+  .field{margin-bottom:20px;}
+  .field label{display:block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--graphite);margin-bottom:8px;}
+  .field select, .field input[type=number]{
+    width:100%;padding:12px 14px;border:1px solid #d8d7d1;border-radius:3px;font-size:15px;font-family:'Inter',sans-serif;background:#fff;
+  }
+  .field select:focus, .field input:focus{outline:2px solid var(--ink);outline-offset:1px;}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .pillgroup{display:flex;gap:8px;}
+  .pillgroup button{
+    flex:1;padding:11px 8px;border:1px solid #d8d7d1;background:#fff;border-radius:3px;font-size:13px;font-weight:700;color:var(--graphite);
+  }
+  .pillgroup button.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .dp-buttons{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;}
+  .dp-buttons button{padding:6px 10px;font-size:12px;border:1px solid #d8d7d1;background:#fff;border-radius:999px;color:var(--graphite);}
+  .dp-buttons button.active{background:var(--crimson);color:#fff;border-color:var(--crimson);}
+  .field-hint{font-size:11px;color:var(--graphite-soft);margin-top:6px;}
+
+  .result-label{font-size:12px;color:var(--graphite-soft);text-transform:uppercase;letter-spacing:.1em;}
+  .result-amount{font-family:'Oswald',sans-serif;font-size:52px;margin-top:6px;line-height:1;}
+  .result-amount span{font-size:50px;color:var(--graphite-soft);font-family:'Inter',sans-serif;font-weight:600;}
+  .result-breakdown{margin-top:26px;border-top:1px solid var(--line-soft);padding-top:20px;}
+  .rb-row{display:flex;justify-content:space-between;padding:8px 0;font-size:14px;border-bottom:1px dashed var(--line-soft);}
+  .rb-row span:first-child{color:var(--graphite-soft);}
+  .rb-row span:last-child{font-family:'Oswald',sans-serif;font-size:15px;}
+  .result-note{font-size:11px;color:var(--graphite-soft);margin-top:18px;line-height:1.5;}
+  .calc-cta{margin-top:22px;}
+
+  /* ---------- FOOTER ---------- */
+  footer.site{background:var(--ink);color:#fff;padding:56px 0 30px;border-top:1px solid var(--line);}
+  .foot-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:start;}
+  .foot-advisor .role{color:var(--crimson);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;}
+  .foot-advisor h3{font-size:30px;margin-top:8px;}
+  .foot-advisor p{color:var(--graphite-soft);font-size:14px;margin-top:10px;max-width:42ch;line-height:1.6;}
+  .foot-contact{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap;}
+  .foot-models{list-style:none;padding:0;margin:0;columns:2;gap:20px;}
+  .foot-models li{font-size:14px;color:var(--graphite-soft);padding:6px 0;border-bottom:1px solid var(--line-soft);}
+  .foot-bottom{margin-top:40px;padding-top:20px;border-top:1px solid var(--line-soft);font-size:12px;color:var(--graphite-soft);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+
+  /* floating whatsapp */
+  .float-wa{
+    position:fixed;bottom:22px;right:22px;z-index:60;background:var(--wa);color:#062b16;
+    width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 8px 22px rgba(0,0,0,.28);text-decoration:none;
+  }
+  .float-wa:hover{background:var(--wa-dark);}
+  .float-wa svg{width:28px;height:28px;fill:#062b16;}
+  .float-wa:hover svg{fill:#fff;}
+
+  @media (max-width:900px){
+    nav.links{display:none;}
+    .burger{display:block;}
+    .hero-grid{grid-template-columns:1fr;}
+    .model-grid{grid-template-columns:1fr 1fr;}
+    .price-block{grid-template-columns:1fr;}
+    .calc-panel{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr;}
+  }
+  @media (max-width:600px){
+    .model-grid{grid-template-columns:1fr;}
+    .row2{grid-template-columns:1fr;}
+    .spec-list{grid-template-columns:1fr;}
+  }
+  @media (max-width:720px){
+    .price-block{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+<!--
+  TO ADD YOUR OWN CAR PHOTOS:
+  Create a folder named "images" next to this HTML file, and drop in
+  one photo per model using these exact filenames:
+    images/saga.jpg
+    images/persona.jpg
+    images/x50.jpg
+    images/x70.jpg
+    images/x90.jpg
+    images/s70.jpg
+  Any missing photo falls back to a placeholder automatically, so you
+  can add them one at a time. Landscape photos, roughly 800x450px or
+  wider, look best.
+-->
+  
+<!-- ni logo proton -->
+<header class="site">
+  <div class="navbar">
+    <a href="/">
+        <img class="e-site-image e-site-media c-header__logo" src="https://cms-assets.proton.com/proton-cms-blob/media/mlvmigt0/proton-logo.png" alt="Proton Logo" style="--ratio: 4.98;">
+    </a>
+    <nav class="links">
+      <button data-goto="models" class="active">Models</button>
+      <button data-goto="calc">Calculator</button>
+      <button data-goto="advisor">Contact Amir</button>
+    </nav>
+    <a class="nav-cta" id="navWa" target="_blank" rel="noopener">
+      WhatsApp Amir
+    </a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-eyebrow">Full Model Range · Peninsular Malaysia Pricing</div>
+      <h1>🔥BULAN NI<br><em>JOM BAWA BALIK PROTON BARU!🔥</em></h1>
+      <p class="lead">✅ Sesuai untuk pergi kerja & kegunaan harian</p>
+      <p class="lead">✅ Selesa untuk bawa family</p>
+      <p class="lead">✅ Design moden & bergaya</p>
+      <p class="lead">✅ Nak beli tapi risau bajet? Saya bantu kira ikut kemampuan anda!</p>
+      <p class="lead">💥 Bulan ni jangan sekadar tengok — kita cuba realisasikan impian anda memiliki kereta baru!</p>
+
+<p class="lead">Saya Amir | Proton Seremban sedia bantu:</p>
+<p class="lead">📋 Semak kelayakan</p>
+<p class="lead">💳 Urusan loan</p>
+<p class="lead">🔄 Trade-in kereta lama</p>
+<p class="lead">🚘 Urusan sampai kereta diserahkan</p>
+
+<p class="lead">📲 AMIR — 011-722 56054</p>
+
+<p class="lead">🔥 Tak pasti layak atau tak? WhatsApp saya dulu. Kita kira, kita bincang, kita cari jalan!</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" data-goto="models">Browse Models</button>
+        <button class="btn btn-ghost" data-goto="calc">Calculate Installment</button>
+      </div>
+    </div>
+    <div class="advisor-card" id="advisor">
+      <div class="role">Proton Sales Advisor</div>
+      <h3>Amir Azlan</h3>
+      <div class="dealer">Setia Auto Drive Sdn Bhd · Co. No. 201801042463 (1304495-U)</div>
+      <div class="phone-row">
+        <div>
+          <div class="phone-label">Call or WhatsApp</div>
+          <div class="phone">011-722 6054</div>
+        </div>
+        <a class="btn btn-wa" href="#" id="advisorWa" target="_blank" rel="noopener">Chat Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="rail-outer">
+  <div class="rail" id="modelRail"></div>
+</div>
+
+<section class="section" id="models">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="kicker">Model Range</div>
+        <h2>Six models. Every variant priced.</h2>
+        <p>Tap a model to compare variants, specification, colours and the on-the-road price with insurance. Figures shown are for Peninsular Malaysia, individual registration.</p>
+      </div>
+    </div>
+    <div class="model-grid" id="modelGrid"></div>
+  </div>
+</section>
+
+<section class="section calc" id="calc">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="kicker">Loan Calculator</div>
+        <h2>Work out your monthly installment</h2>
+        <p>Pick a model and variant, set your down payment and tenure, and see the estimated monthly commitment — using the same flat-rate method Proton financing tables use.</p>
+      </div>
+    </div>
+    <div class="calc-panel">
+      <div class="calc-form">
+        <div class="row2">
+          <div class="field">
+            <label for="calcModel">Model</label>
+            <select id="calcModel"></select>
+          </div>
+          <div class="field">
+            <label for="calcVariant">Variant</label>
+            <select id="calcVariant"></select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Buyer type</label>
+          <div class="pillgroup">
+            <button data-buyer="individual" class="active">Individual</button>
+            <button data-buyer="company">Company</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="calcPrice">On-the-road price (RM)</label>
+          <input type="number" id="calcPrice" step="0.01">
+        </div>
+
+        <div class="field">
+          <label for="calcDp">Down payment (RM)</label>
+          <input type="number" id="calcDp" step="1">
+          <div class="dp-buttons">
+            <span style="font-size:12px;color:var(--graphite-soft);align-self:center;margin-right:2px;">Quick set:</span>
+            <button data-dp="10" class="active">10%</button>
+            <button data-dp="20">20%</button>
+            <button data-dp="30">30%</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="calcRate">Flat interest rate (% p.a.)</label>
+          <input type="number" id="calcRate" value="2.5" step="0.01">
+          <div class="field-hint" id="rateHint"></div>
+        </div>
+
+        <div class="field">
+          <label>Tenure</label>
+          <div class="pillgroup">
+            <button data-tenure="5">5 Years</button>
+            <button data-tenure="7">7 Years</button>
+            <button data-tenure="9" class="active">9 Years</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-result">
+        <div class="result-label">Estimated monthly installment</div>
+        <div class="result-amount">RM <span id="resMonthly">-</span><span id="resMonthlyDec"></span></div>
+
+        <div class="result-breakdown">
+          <div class="rb-row"><span>Vehicle price (OTR)</span><span id="rbPrice">-</span></div>
+          <div class="rb-row"><span>Down payment</span><span id="rbDp">-</span></div>
+          <div class="rb-row"><span>Loan amount</span><span id="rbLoan">-</span></div>
+          <div class="rb-row"><span>Total interest</span><span id="rbInterest">-</span></div>
+          <div class="rb-row"><span>Total payable</span><span id="rbTotal">-</span></div>
+        </div>
+        <div class="result-note">Estimate uses the flat-rate method (interest = loan × rate × years). Actual approval, rate and tenure depend on the financier's assessment. Confirm exact figures with Amir before booking.</div>
+        <div class="calc-cta">
+          <a class="btn btn-wa" id="calcWa" target="_blank" rel="noopener" style="width:100%;justify-content:center;">Send this deal to Amir on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap foot-grid">
+    <div class="foot-advisor">
+      <div class="role">Proton Sales Advisor</div>
+      <h3>Amir Azlan</h3>
+      <p>Reach out for the latest promotions, trade-in valuations, financing packages and test drive bookings across the full Proton range.</p>
+      <div class="foot-contact">
+        <a class="btn btn-primary" href="tel:+60111722 6054">Call 011-722 6054</a>
+        <a class="btn btn-wa" id="footWa" target="_blank" rel="noopener">WhatsApp Amir</a>
+      </div>
+    </div>
+    <div>
+      <div class="role">Model Range</div>
+      <ul class="foot-models" id="footModelList"></ul>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>Setia Auto Drive Sdn Bhd · Co. No. 201801042463 (1304495-U)</span>
+    <span>Prices and specifications are subject to change without prior notice. Terms and conditions apply.</span>
+  </div>
+</footer>
+
+<a class="float-wa" id="floatWa" target="_blank" rel="noopener" aria-label="WhatsApp Amir Azlan">
+  <svg viewBox="0 0 32 32"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.696 4.607 1.898 6.48L4 29l7.72-1.868A11.94 11.94 0 0 0 16 27c6.627 0 12-5.373 12-12S22.628 3 16.001 3zm0 21.75c-1.94 0-3.75-.51-5.32-1.4l-.38-.22-4.58 1.11 1.13-4.47-.25-.4A9.72 9.72 0 0 1 5.25 15c0-5.93 4.82-10.75 10.75-10.75S26.75 9.07 26.75 15 21.93 24.75 16.001 24.75zm5.94-8.06c-.32-.16-1.9-.94-2.2-1.05-.29-.11-.5-.16-.72.16-.21.32-.82 1.04-1 1.25-.19.21-.37.24-.68.08-.32-.16-1.34-.49-2.55-1.57-.94-.84-1.58-1.87-1.76-2.19-.19-.32-.02-.5.14-.65.14-.14.32-.37.48-.56.16-.18.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.72-1.74-.99-2.38-.26-.62-.53-.54-.72-.55h-.61c-.21 0-.56.08-.85.4-.29.32-1.11 1.08-1.11 2.64s1.14 3.06 1.3 3.27c.16.21 2.24 3.42 5.43 4.8.76.33 1.35.52 1.81.67.76.24 1.45.21 2 .13.61-.09 1.9-.78 2.17-1.53.27-.75.27-1.39.19-1.53-.08-.13-.29-.21-.61-.37z"/></svg>
+</a>
+
+<script>
+(function(){
+  var PHONE = "601172256054";
+
+  function waLink(text){
+    return "https://api.whatsapp.com/send/?phone="+PHONE+"&text="+encodeURIComponent(text)+"&type=phone_number&app_absent=0";
+  }
+  function genericMsg(){
+    return "Hi Amir, saya berminat dengan Proton. Boleh kongsikan maklumat lanjut?";
+  }
+  function bookingMsg(model, variant, colour){
+    colour = colour || "-";
+    return "Hi Amir, saya nak Booking.\n\nNama: -\nTelefon: -\nModel: "+model+" ("+variant+")\nWarna: "+colour+"\nNota: -";
+  }
+  function calcMsg(model, variant, price, dp, tenure, rate, monthly){
+    return "Hi Amir, saya baru guna kalkulator ansuran.\n\nModel: "+model+" ("+variant+")\nHarga OTR: RM "+price+"\nDown Payment: RM "+dp+"\nTempoh: "+tenure+" tahun\nKadar Faedah: "+rate+"%\nAnggaran Ansuran Bulanan: RM "+monthly+"\n\nBoleh sahkan pakej sebenar?";
+  }
+
+  document.getElementById("navWa").href = waLink(genericMsg());
+  document.getElementById("advisorWa").href = waLink(genericMsg());
+  document.getElementById("footWa").href = waLink(genericMsg());
+  document.getElementById("floatWa").href = waLink(genericMsg());
+
+  // ---------------- DATA ----------------
+  var MODELS = [
+    {
+      id:"saga", name:"All-New Saga", tagline:"Intelligence That Thrills", body:"sedan",
+      blurb:"Malaysia's best-selling nameplate, sharpened with fresh technology and everyday value.",
+      colours:["Armour Silver","Snow White","Ruby Red","Marine Blue","Space Grey"],
+      rates:{5:3.00,7:3.10,9:3.20},
+      features:["1.5L VVT Engine","4-Speed AT / CVT (Premium)","Eco Mode Switch","LED Daytime Running Lamps","Reverse Camera","Hill Hold Assist"],
+      featureNote:"",
+      effective:"27 Nov 2025",
+      variants:[
+        {name:"1.5 Standard 4AT", nsp:38405, otrNoIns:38990, insurance:1406.98, otrIns:40396.98, sumInsured:39000, companyOtr:40890.98, install:{5:696,7:526,9:433}},
+        {name:"1.5 Executive 4AT", nsp:44405, otrNoIns:44990, insurance:1575.46, otrIns:46565.46, sumInsured:45000, companyOtr:47059.46, install:{5:804,7:608,9:500}},
+        {name:"1.5 Premium CVT", nsp:49405, otrNoIns:49990, insurance:1715.86, otrIns:51705.86, sumInsured:50000, companyOtr:52199.86, install:{5:892,7:674,9:556}}
+      ]
+    },
+    {
+      id:"persona", name:"Persona", tagline:"Intelligence That Cares", body:"sedan",
+      blurb:"A family sedan built around cabin comfort, safety and low running cost.",
+      colours:[],
+      rates:{5:3.30,7:3.40,9:3.50},
+      features:["1.6L VVT Engine**","CVT Transmission","Eco Mode Switch","16\" Alloy Wheels**","LED Headlamps*","N95 Cabin Filter","Intelligent Entry**","8\" Infotainment Head Unit**","Voice Command*","6 SRS Airbags**","Electronic Stability Control","Hill Hold Assist"],
+      featureNote:"*Premium model only · **Executive & Premium models",
+      effective:"14 Nov 2024",
+      variants:[
+        {name:"1.6L Standard CVT", nsp:47215, otrNoIns:47800, insurance:1631.62, otrIns:49431.62, sumInsured:47000, companyOtr:49775.62, install:{5:863,7:655,9:541}},
+        {name:"1.6L Executive CVT", nsp:52715, otrNoIns:53300, insurance:1800.10, otrIns:55100.10, sumInsured:53000, companyOtr:55444.10, install:{5:962,7:730,9:603}},
+        {name:"1.6L Premium CVT", nsp:57715, otrNoIns:58300, insurance:1940.50, otrIns:60240.50, sumInsured:58000, companyOtr:60584.50, install:{5:1051,7:780,9:659}}
+      ]
+    },
+    {
+      id:"x50", name:"All-New X50", tagline:"Intelligence That Amazes", body:"suv",
+      blurb:"Compact SUV with turbocharged performance and an EEV-certified, tech-forward cabin.",
+      colours:["Armour Silver","Snow White","Jet Grey","Passion Red","Teal Bayou Green"],
+      rates:{5:2.60,7:2.70,9:2.80},
+      features:["1.5L TGDi Turbo Engine","7-Speed DCT","5-Year Warranty (150,000km)","5-Year Data Package (1GB/month)","6x Free Labour Service","EEV Certified"],
+      featureNote:"",
+      effective:"24 Jul 2025",
+      variants:[
+        {name:"1.5TD Executive", nsp:89120, otrNoIns:89800, insurance:2839.06, otrIns:92639.06, sumInsured:90000, companyOtr:93043.06, install:{5:1569,7:1180,9:966}},
+        {name:"1.5TD Premium", nsp:96520, otrNoIns:101800, insurance:3176.02, otrIns:104976.02, sumInsured:102000, companyOtr:105380.02, install:{5:1778,7:1337,9:1095}},
+        {name:"1.5TD Flagship", nsp:107820, otrNoIns:113300, insurance:3484.90, otrIns:116784.90, sumInsured:113000, companyOtr:117188.90, install:{5:1978,7:1487,9:1218}}
+      ]
+    },
+    {
+      id:"x70", name:"X70", tagline:"Intelligence That Inspires", body:"suv",
+      blurb:"Mid-size SUV pairing a refined ride with a spacious, family-oriented cabin.",
+      colours:["Armour Silver","Snow White","Jet Grey","Marine Blue"],
+      rates:{5:2.60,7:2.70,9:2.80},
+      features:[],
+      featureNote:"Ask Amir for the full specification sheet by variant.",
+      effective:"8 Jan 2026",
+      variants:[
+        {name:"1.5TD Executive", nsp:106123, otrNoIns:106800, insurance:3316.42, otrIns:110116.42, sumInsured:107000, companyOtr:110520.42, install:{5:1865,7:1402,9:1148}},
+        {name:"1.5TD Premium", nsp:117323, otrNoIns:119800, insurance:3681.46, otrIns:123481.46, sumInsured:120000, companyOtr:123885.46, install:{5:2091,7:1572,9:1287}}
+      ]
+    },
+    {
+      id:"x90", name:"X90", tagline:"Intelligence That Empowers", body:"suv",
+      blurb:"Proton's flagship 7-seater SUV, with captain seats and full-family comfort on Prime X.",
+      colours:["Quartz Black","Marine Blue","Armour Silver","Snow White","Jet Grey"],
+      rates:{5:2.05,7:2.15,9:2.25},
+      features:["i-GT 1.5TD Engine","7-Speed DCT","Android Auto & Apple CarPlay","18\" Alloy Wheels","Auto Headlamps*","1st & 2nd Row Ventilated Seats**","Nappa Leather Power Seats**","Captain Seats**","12.3\" Infotainment Head Unit","360° HD Camera (180°)","6 SRS Airbags","7 USB Ports"],
+      featureNote:"*Prime & Prime X models · **Prime X model only",
+      effective:"11 Mar 2026",
+      variants:[
+        {name:"1.5TD Lite", nsp:106093, otrNoIns:106800, insurance:3316.42, otrIns:110116.42, sumInsured:107000, companyOtr:110520.42, install:{5:1821,7:1358,9:1104}},
+        {name:"1.5TD Prime", nsp:114293, otrNoIns:116800, insurance:3597.22, otrIns:120397.22, sumInsured:117000, companyOtr:120801.22, install:{5:1990,7:1484,9:1206}},
+        {name:"1.5TD Prime X", nsp:119544, otrNoIns:122800, insurance:3765.70, otrIns:126565.70, sumInsured:123000, companyOtr:126969.70, install:{5:2093,7:1560,9:1269}}
+      ]
+    },
+    {
+      id:"s70", name:"S70", tagline:"Intelligence That Evolves", body:"sedan",
+      blurb:"Malaysia's sporty sedan — a 1.5L turbo four-cylinder with a dual-clutch gearbox.",
+      colours:["Snow White","Armour Silver","Space Grey","Marine Blue","Ruby Red","Quartz Black"],
+      rates:{5:2.05,7:2.15,9:2.25},
+      features:["1.5 i-GT 4-Cylinder Turbo","7-Speed Dual Clutch Transmission","Drive Mode Selection","Remote Engine Start","Leatherette Seats","17\" Alloy Wheels**","Sunroof*","12.3\" Infotainment Head Unit**","Wireless Charger**","6 SRS Airbags","Advanced Driver Assistance System**","360 Camera**"],
+      featureNote:"*Flagship X model only · **Flagship & Flagship X models",
+      effective:"12 Feb 2026",
+      variants:[
+        {name:"1.5TD Executive", nsp:73165, otrNoIns:73800, insurance:2389.78, otrIns:76189.78, sumInsured:74000, companyOtr:76683.78, install:{5:1259,7:939,9:763}},
+        {name:"1.5TD Premium", nsp:79165, otrNoIns:79800, insurance:2558.26, otrIns:82358.26, sumInsured:80000, companyOtr:82852.26, install:{5:1360,7:1014,9:824}},
+        {name:"1.5TD Flagship", nsp:87565, otrNoIns:89800, insurance:2839.06, otrIns:92639.46, sumInsured:90000, companyOtr:93133.06, install:{5:1531,7:1141,9:928}},
+        {name:"1.5TD Flagship X", nsp:88686, otrNoIns:94800, insurance:2979.46, otrIns:97779.46, sumInsured:95000, companyOtr:98273.46, install:{5:1617,7:1206,9:980}}
+      ]
+    }
+  ];
+
+  var COLOUR_HEX = {
+    "Armour Silver":"#9BA0A6","Snow White":"#F5F5F3","Ruby Red":"#8E1327","Marine Blue":"#1F3A5F",
+    "Space Grey":"#4B4E54","Jet Grey":"#2E3033","Passion Red":"#C21B24","Teal Bayou Green":"#1E5C58",
+    "Quartz Black":"#111214"
+  };
+
+  function money(n){
+    return Number(n).toLocaleString('en-MY', {minimumFractionDigits:2, maximumFractionDigits:2});
+  }
+  function moneyWhole(n){
+    return Math.round(n).toLocaleString('en-MY');
+  }
+
+  var ICONS = {
+    sedan:'<svg viewBox="0 0 200 70" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 50 C8 40 18 40 28 34 C42 24 60 16 78 16 L128 16 C146 16 160 24 172 34 C180 40 192 40 192 50 L192 54 L8 54 Z" stroke="#0b0c0e" stroke-width="3"/><path d="M46 33 C56 22 68 19 82 19 L120 19 C134 19 144 23 154 33" stroke="#0b0c0e" stroke-width="3"/><line x1="98" y1="19" x2="98" y2="33" stroke="#0b0c0e" stroke-width="3"/><circle cx="52" cy="54" r="11" stroke="#0b0c0e" stroke-width="3" fill="#fff"/><circle cx="150" cy="54" r="11" stroke="#0b0c0e" stroke-width="3" fill="#fff"/></svg>',
+    suv:'<svg viewBox="0 0 200 70" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 50 C6 38 14 38 22 32 C34 20 50 12 66 12 L142 12 C158 12 170 22 182 32 C190 38 194 40 194 50 L194 54 L6 54 Z" stroke="#0b0c0e" stroke-width="3"/><path d="M40 31 C50 19 58 15 70 15 L138 15 C150 15 158 20 168 31" stroke="#0b0c0e" stroke-width="3"/><line x1="104" y1="15" x2="104" y2="31" stroke="#0b0c0e" stroke-width="3"/><circle cx="50" cy="54" r="12" stroke="#0b0c0e" stroke-width="3" fill="#fff"/><circle cx="152" cy="54" r="12" stroke="#0b0c0e" stroke-width="3" fill="#fff"/></svg>'
+  };
+
+  // ---------------- RENDER: RAIL ----------------
+  var rail = document.getElementById("modelRail");
+  MODELS.forEach(function(m){
+    var minPrice = Math.min.apply(null, m.variants.map(function(v){return v.otrIns;}));
+    var chip = document.createElement("button");
+    chip.className = "rail-chip";
+    chip.innerHTML = '<div class="rc-name">'+m.name+'</div><div class="rc-tag">'+m.tagline+'</div><div class="rc-price">From RM '+moneyWhole(minPrice)+'</div>';
+    chip.addEventListener("click", function(){ openModel(m.id); });
+    rail.appendChild(chip);
+  });
+
+  // ---------------- RENDER: MODEL GRID ----------------
+  var grid = document.getElementById("modelGrid");
+  MODELS.forEach(function(m){
+    var card = document.createElement("div");
+    card.className = "model-card";
+    card.id = "card-"+m.id;
+
+    var minPrice = Math.min.apply(null, m.variants.map(function(v){return v.otrIns;}));
+
+    var top = document.createElement("div");
+    top.className = "mc-top";
+    top.innerHTML =
+      '<div class="mc-photo">'+
+        '<img src="images/'+m.id+'.jpg" alt="Proton '+m.name+'" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\';">'+
+        '<div class="mc-photo-fallback">'+ICONS[m.body]+'<span>Add photo: images/'+m.id+'.jpg</span></div>'+
+      '</div>'+
+      '<div class="mc-top-text">'+
+        '<div><div class="mc-tag">'+m.tagline+'</div><div class="mc-name">'+m.name+'</div>'+
+        '<div class="mc-price">From <b>RM '+moneyWhole(minPrice)+'</b> · OTR with insurance</div></div>'+
+        '<div class="mc-toggle">View variants &amp; pricing <svg width="12" height="8" viewBox="0 0 12 8"><path d="M1 1L6 6L11 1" stroke="#0b0c0e" stroke-width="2" fill="none"/></svg></div>'+
+      '</div>';
+    top.addEventListener("click", function(){ toggleCard(m.id); });
+
+    var detail = document.createElement("div");
+    detail.className = "mc-detail";
+    detail.id = "detail-"+m.id;
+
+    card.appendChild(top);
+    card.appendChild(detail);
+    grid.appendChild(card);
+
+    renderDetail(m, 0);
+  });
+
+  function renderDetail(m, activeIdx){
+    var detail = document.getElementById("detail-"+m.id);
+    var tabsHtml = '<div class="variant-tabs">' + m.variants.map(function(v,i){
+      return '<button class="vtab'+(i===activeIdx?' active':'')+'" data-model="'+m.id+'" data-idx="'+i+'">'+v.name+'</button>';
+    }).join('') + '</div>';
+
+    var v = m.variants[activeIdx];
+    var installHtml = [5,7,9].map(function(t){
+      return '<div class="install-pill"><span class="yrs">'+t+' yrs · '+m.rates[t]+'%</span><span class="amt">RM '+moneyWhole(v.install[t])+'/mo</span></div>';
+    }).join('');
+
+    var priceHtml =
+      '<div class="price-block">' +
+        '<div class="otr-figure">' +
+          '<div class="label">On-the-road price with insurance</div>' +
+          '<div class="amount">RM '+money(v.otrIns)+'</div>' +
+          '<div class="sub">Nett selling price RM '+money(v.nsp)+' &middot; Company registration RM '+money(v.companyOtr)+' &middot; Sum insured RM '+moneyWhole(v.sumInsured)+'</div>' +
+          '<div class="install-row">'+installHtml+'</div>' +
+        '</div>' +
+        '<div>' +
+          (m.features.length ? '<ul class="spec-list">'+m.features.map(function(f){return '<li>'+f+'</li>';}).join('')+'</ul>' : '<p style="font-size:13px;color:var(--graphite);">'+m.featureNote+'</p>') +
+          (m.featureNote && m.features.length ? '<div class="spec-note">'+m.featureNote+'</div>' : '') +
+          (m.colours.length ? '<div class="colour-row">'+m.colours.map(function(c){
+            return '<div class="swatch"><span class="dot" style="background:'+(COLOUR_HEX[c]||'#ccc')+'"></span>'+c+'</div>';
+          }).join('')+'</div>' : '') +
+        '</div>' +
+      '</div>';
+
+    var actionsHtml =
+      '<div class="detail-actions">' +
+        '<button class="btn-dark" data-calc-model="'+m.id+'" data-calc-idx="'+activeIdx+'">Calculate this variant</button>' +
+        '<a class="btn-outline" href="'+waLink(bookingMsg(m.name, v.name, m.colours[0]))+'" target="_blank" rel="noopener">Book via WhatsApp</a>' +
+      '</div>';
+
+    var effHtml = '<div style="font-size:11px;color:var(--graphite-soft);margin-top:16px;">Price list effective '+m.effective+'. Individual, Peninsular Malaysia. Terms and conditions apply.</div>';
+
+    detail.innerHTML = tabsHtml + priceHtml + actionsHtml + effHtml;
+
+    // tab events
+    detail.querySelectorAll(".vtab").forEach(function(btn){
+      btn.addEventListener("click", function(e){
+        e.stopPropagation();
+        renderDetail(m, parseInt(btn.getAttribute("data-idx"),10));
+      });
+    });
+    // calc button
+    detail.querySelectorAll("[data-calc-model]").forEach(function(btn){
+      btn.addEventListener("click", function(e){
+        e.stopPropagation();
+        var mid = btn.getAttribute("data-calc-model");
+        var idx = parseInt(btn.getAttribute("data-calc-idx"),10);
+        setCalcSelection(mid, idx);
+        document.getElementById("calc").scrollIntoView({behavior:"smooth"});
+      });
+    });
+  }
+
+  function toggleCard(id){
+    var card = document.getElementById("card-"+id);
+    var wasOpen = card.classList.contains("open");
+    document.querySelectorAll(".model-card").forEach(function(c){ c.classList.remove("open"); });
+    if(!wasOpen){
+      card.classList.add("open");
+    }
+  }
+  function openModel(id){
+    document.getElementById("models").scrollIntoView({behavior:"smooth"});
+    setTimeout(function(){
+      document.querySelectorAll(".model-card").forEach(function(c){ c.classList.remove("open"); });
+      document.getElementById("card-"+id).classList.add("open");
+    }, 350);
+  }
+
+  // ---------------- FOOTER MODEL LIST ----------------
+  var footList = document.getElementById("footModelList");
+  MODELS.forEach(function(m){
+    var li = document.createElement("li");
+    li.textContent = m.name+" — "+m.tagline;
+    footList.appendChild(li);
+  });
+
+  // ---------------- NAV ----------------
+  document.querySelectorAll("nav.links button").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      document.querySelectorAll("nav.links button").forEach(function(b){b.classList.remove("active");});
+      btn.classList.add("active");
+      document.getElementById(btn.getAttribute("data-goto")).scrollIntoView({behavior:"smooth"});
+    });
+  });
+  document.querySelectorAll("[data-goto]").forEach(function(btn){
+    if(btn.tagName === "BUTTON" && !btn.closest("nav.links")){
+      btn.addEventListener("click", function(){
+        document.getElementById(btn.getAttribute("data-goto")).scrollIntoView({behavior:"smooth"});
+      });
+    }
+  });
+
+  // ---------------- CALCULATOR ----------------
+  var calcModelSel = document.getElementById("calcModel");
+  var calcVariantSel = document.getElementById("calcVariant");
+  var calcPrice = document.getElementById("calcPrice");
+  var calcDp = document.getElementById("calcDp");
+  var calcRate = document.getElementById("calcRate");
+  var rateHint = document.getElementById("rateHint");
+  var buyerType = "individual";
+  var tenure = 9;
+  var DEFAULT_RATE = 2.5;
+  var DEFAULT_DP_PCT = 10;
+  var firstLoad = true;
+
+  MODELS.forEach(function(m, i){
+    var opt = document.createElement("option");
+    opt.value = i; opt.textContent = m.name;
+    calcModelSel.appendChild(opt);
+  });
+
+  function populateVariants(modelIdx){
+    calcVariantSel.innerHTML = "";
+    MODELS[modelIdx].variants.forEach(function(v, i){
+      var opt = document.createElement("option");
+      opt.value = i; opt.textContent = v.name;
+      calcVariantSel.appendChild(opt);
+    });
+  }
+
+  function currentModel(){ return MODELS[parseInt(calcModelSel.value,10)]; }
+  function currentVariant(){ return currentModel().variants[parseInt(calcVariantSel.value,10)]; }
+
+  function updateRateHint(){
+    var m = currentModel();
+    rateHint.textContent = "Typical published rate for this model at "+tenure+" years: "+m.rates[tenure]+"% p.a.";
+  }
+
+  function syncPriceAndRate(){
+    var m = currentModel(), v = currentVariant();
+    var price = buyerType === "company" ? v.companyOtr : v.otrIns;
+    calcPrice.value = price.toFixed(2);
+    if(firstLoad){
+      calcRate.value = DEFAULT_RATE;
+      calcDp.value = (price * DEFAULT_DP_PCT/100).toFixed(0);
+      firstLoad = false;
+    }
+    updateRateHint();
+    runCalc();
+  }
+
+  function setCalcSelection(modelId, variantIdx){
+    var mi = MODELS.findIndex(function(m){return m.id === modelId;});
+    calcModelSel.value = mi;
+    populateVariants(mi);
+    calcVariantSel.value = variantIdx;
+    syncPriceAndRate();
+  }
+
+  populateVariants(0);
+  syncPriceAndRate();
+
+  calcModelSel.addEventListener("change", function(){
+    populateVariants(parseInt(calcModelSel.value,10));
+    syncPriceAndRate();
+  });
+  calcVariantSel.addEventListener("change", syncPriceAndRate);
+
+  document.querySelectorAll("[data-buyer]").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      document.querySelectorAll("[data-buyer]").forEach(function(b){b.classList.remove("active");});
+      btn.classList.add("active");
+      buyerType = btn.getAttribute("data-buyer");
+      syncPriceAndRate();
+    });
+  });
+  document.querySelectorAll("[data-tenure]").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      document.querySelectorAll("[data-tenure]").forEach(function(b){b.classList.remove("active");});
+      btn.classList.add("active");
+      tenure = parseInt(btn.getAttribute("data-tenure"),10);
+      updateRateHint();
+      runCalc();
+    });
+  });
+  document.querySelectorAll("[data-dp]").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      document.querySelectorAll("[data-dp]").forEach(function(b){b.classList.remove("active");});
+      btn.classList.add("active");
+      var pct = parseFloat(btn.getAttribute("data-dp"));
+      var price = parseFloat(calcPrice.value) || 0;
+      calcDp.value = (price * pct/100).toFixed(0);
+      runCalc();
+    });
+  });
+  [calcPrice, calcDp, calcRate].forEach(function(el){
+    el.addEventListener("input", runCalc);
+  });
+
+  function runCalc(){
+    var price = parseFloat(calcPrice.value) || 0;
+    var dpAmount = parseFloat(calcDp.value) || 0;
+    var rate = parseFloat(calcRate.value) || 0;
+    var years = tenure;
+
+    var dpPct = price > 0 ? (dpAmount/price*100) : 0;
+    var loan = Math.max(price - dpAmount, 0);
+    var interest = loan * (rate/100) * years;
+    var totalPayable = loan + interest;
+    var monthly = totalPayable / (years*12);
+
+    var wholePart = Math.floor(monthly);
+    var decPart = (monthly - wholePart).toFixed(2).substring(1);
+
+    document.getElementById("resMonthly").textContent = wholePart.toLocaleString('en-MY');
+    document.getElementById("resMonthlyDec").textContent = decPart;
+    document.getElementById("rbPrice").textContent = "RM "+money(price);
+    document.getElementById("rbDp").textContent = "RM "+money(dpAmount)+" ("+dpPct.toFixed(1)+"%)";
+    document.getElementById("rbLoan").textContent = "RM "+money(loan);
+    document.getElementById("rbInterest").textContent = "RM "+money(interest);
+    document.getElementById("rbTotal").textContent = "RM "+money(totalPayable);
+
+    var m = currentModel(), v = currentVariant();
+    document.getElementById("calcWa").href = waLink(
+      calcMsg(m.name, v.name, moneyWhole(price), moneyWhole(dpAmount), years, rate, moneyWhole(monthly))
+    );
+  }
+})();
+</script>
+</body>
+</html>
