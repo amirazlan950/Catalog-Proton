@@ -50,9 +50,11 @@
     border-bottom:1px solid var(--line);
   }
   .navbar{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:16px 24px;max-width:1180px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:nowrap;
+    padding:14px 24px;max-width:1180px;margin:0 auto;
   }
+  .logo-link{display:flex;align-items:center;flex:0 0 auto;min-width:0;}
+  .logo-link img{height:30px;width:auto;max-width:none;}
   .wordmark{
     font-family:'Oswald',sans-serif;font-weight:700;font-size:22px;color:#fff;
     letter-spacing:.06em;display:flex;align-items:baseline;gap:8px;
@@ -64,32 +66,113 @@
     padding:6px 0;border-bottom:2px solid transparent;
   }
   nav.links button:hover, nav.links button.active{color:#fff;border-color:var(--crimson);}
+  .nav-right{display:flex;align-items:center;gap:10px;flex:0 0 auto;}
   .nav-cta{
     display:flex;align-items:center;gap:8px;background:var(--wa);color:#062b16;
     padding:9px 16px;border-radius:999px;font-weight:700;font-size:13px;
-    text-decoration:none;border:none;
+    text-decoration:none;border:none;white-space:nowrap;flex:0 0 auto;
   }
   .nav-cta:hover{background:var(--wa-dark);color:#fff;}
-  .burger{display:none;background:none;border:1px solid var(--line);color:#fff;padding:8px 10px;border-radius:4px;}
+  .burger{
+    display:none;background:none;border:1px solid var(--line);color:#fff;
+    width:38px;height:38px;border-radius:6px;flex:0 0 auto;
+    align-items:center;justify-content:center;padding:0;
+  }
+  .burger svg{display:block;}
+  .mobile-menu{
+    display:none;flex-direction:column;
+    position:absolute;top:100%;left:0;right:0;
+    background:var(--ink);border-bottom:1px solid var(--line);
+    padding:8px 24px 18px;
+  }
+  .mobile-menu.open{display:flex;}
+  .mobile-menu button{
+    background:none;border:none;border-bottom:1px solid var(--line-soft);
+    color:#e5e5e2;font-size:15px;font-weight:600;text-align:left;
+    padding:14px 2px;
+  }
+  .mobile-menu button:last-child{border-bottom:none;}
+  .mobile-menu button.active{color:var(--crimson);}
 
   /* ---------- HERO ---------- */
   section.hero{
     background:var(--ink);color:#fff;
-    padding:72px 0 40px;
+    padding:72px 0 48px;
     border-bottom:1px solid var(--line);
     position:relative;overflow:hidden;
   }
-  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:end;}
+  section.hero::before{
+    content:"";position:absolute;top:-140px;left:-100px;width:560px;height:560px;
+    background:radial-gradient(circle, rgba(226,7,26,.28), transparent 68%);
+    pointer-events:none;
+  }
+  section.hero::after{
+    content:"";position:absolute;bottom:-180px;right:10%;width:420px;height:420px;
+    background:radial-gradient(circle, rgba(226,7,26,.12), transparent 70%);
+    pointer-events:none;
+  }
+  .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:start;}
+  .hero-copy{max-width:560px;}
+  .hero-badge{
+    display:inline-flex;align-items:center;gap:7px;
+    background:rgba(226,7,26,.14);border:1px solid rgba(226,7,26,.45);
+    color:#ff6b74;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+    padding:8px 16px;border-radius:999px;margin-bottom:22px;
+  }
   .hero-eyebrow{color:var(--crimson);font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px;}
-  .hero h1{font-size:clamp(40px,6vw,74px);line-height:.98;font-weight:700;}
+  .hero h1{font-size:clamp(40px,6vw,72px);line-height:1.04;font-weight:700;color:#fff;}
+  .hero h1 .flame{font-size:.7em;vertical-align:-.08em;}
+  .hero h1 .flame-line{
+    display:block;margin-top:4px;
+    background:linear-gradient(90deg,#ff8a3d,#ff2f3d 65%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
   .hero h1 em{font-style:normal;color:var(--graphite-soft);}
   .hero p.lead{margin-top:22px;color:#c7c9cd;font-size:17px;max-width:44ch;line-height:1.5;}
-  .hero-actions{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap;}
+
+  .hero-checklist{list-style:none;margin:26px 0 0;padding:0;display:flex;flex-direction:column;gap:12px;}
+  .hero-checklist li{display:flex;align-items:flex-start;gap:11px;color:#e5e5e2;font-size:15px;line-height:1.5;}
+  .check-badge{
+    flex:0 0 20px;width:20px;height:20px;border-radius:50%;margin-top:2px;
+    background:#183d2a;color:#5fe6a0;display:flex;align-items:center;justify-content:center;
+    font-size:12px;font-weight:700;
+  }
+
+  .hero-callout{
+    margin-top:24px;background:rgba(226,7,26,.09);border-left:3px solid var(--crimson);
+    padding:15px 18px;border-radius:0 6px 6px 0;color:#f4d6d8;font-size:14.5px;line-height:1.6;font-weight:600;
+  }
+
+  .service-block{margin-top:28px;}
+  .service-label{color:#c7c9cd;font-size:13px;font-weight:700;margin-bottom:12px;}
+  .service-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .service-chip{
+    display:flex;align-items:center;gap:9px;background:var(--steel);border:1px solid var(--line);
+    padding:11px 14px;border-radius:8px;font-size:13px;color:#e5e5e2;
+  }
+  .service-chip .s-icon{font-size:15px;line-height:1;}
+
+  .hero-contact-pill{
+    display:inline-flex;align-items:center;gap:8px;margin-top:22px;
+    background:var(--steel);border:1px solid var(--line);color:#fff;
+    padding:11px 18px;border-radius:999px;font-size:14px;font-weight:700;text-decoration:none;
+  }
+  .hero-contact-pill:hover{border-color:var(--crimson);}
+
+  .hero-urgency{
+    margin-top:22px;background:linear-gradient(90deg, rgba(226,7,26,.18), rgba(226,7,26,.04));
+    border:1px solid rgba(226,7,26,.4);padding:15px 18px;border-radius:6px;
+    color:#fff;font-size:14.5px;font-weight:600;line-height:1.55;
+  }
+
+  .hero-actions{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap;}
   .btn{
     font-weight:700;font-size:14px;padding:14px 26px;border-radius:2px;border:1px solid transparent;
     display:inline-flex;align-items:center;gap:10px;text-decoration:none;
+    transition:transform .12s ease, box-shadow .12s ease;
   }
-  .btn-primary{background:var(--crimson);color:#fff;}
+  .btn:hover{transform:translateY(-1px);}
+  .btn-primary{background:var(--crimson);color:#fff;box-shadow:0 8px 22px rgba(226,7,26,.28);}
   .btn-primary:hover{background:var(--crimson-dark);}
   .btn-ghost{background:transparent;color:#fff;border-color:var(--line-soft);}
   .btn-ghost:hover{border-color:#fff;}
@@ -98,6 +181,7 @@
 
   .advisor-card{
     background:var(--steel);border:1px solid var(--line);padding:26px;border-radius:4px;
+    position:relative;z-index:1;
   }
   .advisor-card .role{color:var(--crimson);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;}
   .advisor-card h3{font-size:26px;margin-top:8px;color:#fff;}
@@ -234,6 +318,33 @@
   .result-note{font-size:11px;color:var(--graphite-soft);margin-top:18px;line-height:1.5;}
   .calc-cta{margin-top:22px;}
 
+  /* ---------- BOOKING / TRADE-IN ---------- */
+  section.booking{background:var(--ink);color:#fff;}
+  .bt-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .bt-card{background:var(--steel);border:1px solid var(--line);border-radius:12px;padding:30px;}
+  .bt-card h3{font-size:28px;color:#fff;letter-spacing:.01em;}
+  .bt-sub{color:var(--graphite-soft);font-size:13px;margin-top:8px;margin-bottom:24px;line-height:1.5;}
+  #booking .field label{color:var(--graphite-soft);}
+  #booking .field input,
+  #booking .field select,
+  #booking .field textarea{
+    background:#101215;border:1px solid var(--line);color:#fff;border-radius:14px;
+    padding:14px 16px;font-size:14px;font-family:'Inter',sans-serif;width:100%;
+  }
+  #booking .field textarea{resize:vertical;min-height:88px;}
+  #booking .field input::placeholder, #booking .field textarea::placeholder{color:#6a6d74;}
+  #booking .field select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%238a8d94' stroke-width='2' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;}
+  #booking .field input:focus, #booking .field select:focus, #booking .field textarea:focus{outline:2px solid var(--crimson);outline-offset:1px;}
+  .btn-red-block{
+    display:block;width:100%;text-align:center;background:var(--crimson);color:#fff;
+    padding:15px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none;
+    margin-top:8px;border:none;
+  }
+  .btn-red-block:hover{background:var(--crimson-dark);}
+  @media (max-width:900px){
+    .bt-grid{grid-template-columns:1fr;}
+  }
+
   /* ---------- FOOTER ---------- */
   footer.site{background:var(--ink);color:#fff;padding:56px 0 30px;border-top:1px solid var(--line);}
   .foot-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:start;}
@@ -247,17 +358,17 @@
 
   /* floating whatsapp */
   .float-wa{
-    position:fixed;bottom:22px;right:22px;z-index:60;background:var(--wa);color:#062b16;
-    width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-    box-shadow:0 8px 22px rgba(0,0,0,.28);text-decoration:none;
+    position:fixed;bottom:calc(20px + env(safe-area-inset-bottom));right:18px;z-index:60;background:var(--wa);color:#062b16;
+    width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 8px 22px rgba(0,0,0,.35);text-decoration:none;
   }
   .float-wa:hover{background:var(--wa-dark);}
-  .float-wa svg{width:28px;height:28px;fill:#062b16;}
+  .float-wa svg{width:27px;height:27px;fill:#062b16;}
   .float-wa:hover svg{fill:#fff;}
 
   @media (max-width:900px){
     nav.links{display:none;}
-    .burger{display:block;}
+    .burger{display:flex;}
     .hero-grid{grid-template-columns:1fr;}
     .model-grid{grid-template-columns:1fr 1fr;}
     .price-block{grid-template-columns:1fr;}
@@ -268,6 +379,12 @@
     .model-grid{grid-template-columns:1fr;}
     .row2{grid-template-columns:1fr;}
     .spec-list{grid-template-columns:1fr;}
+    .service-grid{grid-template-columns:1fr;}
+    .navbar{padding:12px 16px;gap:8px;}
+    .logo-link img{height:24px;}
+    .nav-cta{padding:8px 12px;font-size:12px;gap:6px;}
+    .nav-cta .cta-full{display:none;}
+    .mobile-menu{padding:8px 16px 16px;}
   }
   @media (max-width:720px){
     .price-block{grid-template-columns:1fr;}
@@ -293,40 +410,61 @@
 <!-- ni logo proton -->
 <header class="site">
   <div class="navbar">
-    <a href="/">
+    <a href="/" class="logo-link">
         <img class="e-site-image e-site-media c-header__logo" src="https://cms-assets.proton.com/proton-cms-blob/media/mlvmigt0/proton-logo.png" alt="Proton Logo" style="--ratio: 4.98;">
     </a>
     <nav class="links">
       <button data-goto="models" class="active">Models</button>
       <button data-goto="calc">Calculator</button>
+      <button data-goto="booking">Booking</button>
       <button data-goto="advisor">Contact Amir</button>
     </nav>
-    <a class="nav-cta" id="navWa" target="_blank" rel="noopener">
-      WhatsApp Amir
-    </a>
+    <div class="nav-right">
+      <a class="nav-cta" id="navWa" target="_blank" rel="noopener">
+        <span>WhatsApp</span><span class="cta-full">&nbsp;Amir</span>
+      </a>
+      <button class="burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><path d="M1 1H17" stroke="#fff" stroke-width="2" stroke-linecap="round"/><path d="M1 7H17" stroke="#fff" stroke-width="2" stroke-linecap="round"/><path d="M1 13H17" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <button data-goto="models" class="active">Models</button>
+      <button data-goto="calc">Calculator</button>
+      <button data-goto="booking">Booking</button>
+      <button data-goto="advisor">Contact Amir</button>
+    </div>
   </div>
 </header>
 
 <section class="hero">
   <div class="wrap hero-grid">
-    <div>
-      <div class="hero-eyebrow">Full Model Range · Peninsular Malaysia Pricing</div>
-      <h1>🔥BULAN NI<br><em>JOM BAWA BALIK PROTON BARU!🔥</em></h1>
-      <p class="lead">✅ Sesuai untuk pergi kerja & kegunaan harian</p>
-      <p class="lead">✅ Selesa untuk bawa family</p>
-      <p class="lead">✅ Design moden & bergaya</p>
-      <p class="lead">✅ Nak beli tapi risau bajet? Saya bantu kira ikut kemampuan anda!</p>
-      <p class="lead">💥 Bulan ni jangan sekadar tengok — kita cuba realisasikan impian anda memiliki kereta baru!</p>
+    <div class="hero-copy">
+      <div class="hero-badge">Full Model Range · Peninsular Malaysia Pricing</div>
+      <h1><span class="flame">🔥</span>BULAN NI<span class="flame-line">JOM BAWA BALIK PROTON BARU! <span class="flame">🔥</span></span></h1>
 
-<p class="lead">Saya Amir | Proton Seremban sedia bantu:</p>
-<p class="lead">📋 Semak kelayakan</p>
-<p class="lead">💳 Urusan loan</p>
-<p class="lead">🔄 Trade-in kereta lama</p>
-<p class="lead">🚘 Urusan sampai kereta diserahkan</p>
+      <ul class="hero-checklist">
+        <li><span class="check-badge">✓</span>Sesuai untuk pergi kerja & kegunaan harian</li>
+        <li><span class="check-badge">✓</span>Selesa untuk bawa family</li>
+        <li><span class="check-badge">✓</span>Design moden & bergaya</li>
+        <li><span class="check-badge">✓</span>Nak beli tapi risau bajet? Saya bantu kira ikut kemampuan anda!</li>
+      </ul>
 
-<p class="lead">📲 AMIR — 011-722 56054</p>
+      <div class="hero-callout">💥 Bulan ni jangan sekadar tengok — kita cuba realisasikan impian anda memiliki kereta baru!</div>
 
-<p class="lead">🔥 Tak pasti layak atau tak? WhatsApp saya dulu. Kita kira, kita bincang, kita cari jalan!</p>
+      <div class="service-block">
+        <div class="service-label">Saya Amir | Proton Seremban sedia bantu:</div>
+        <div class="service-grid">
+          <div class="service-chip"><span class="s-icon">📋</span>Semak kelayakan</div>
+          <div class="service-chip"><span class="s-icon">💳</span>Urusan loan</div>
+          <div class="service-chip"><span class="s-icon">🔄</span>Trade-in kereta lama</div>
+          <div class="service-chip"><span class="s-icon">🚘</span>Urusan sampai kereta diserahkan</div>
+        </div>
+      </div>
+
+      <a class="hero-contact-pill" href="tel:+60117226054">📲 AMIR — 011-722 6054</a>
+
+      <div class="hero-urgency">🔥 Tak pasti layak atau tak? WhatsApp saya dulu. Kita kira, kita bincang, kita cari jalan!</div>
+
       <div class="hero-actions">
         <button class="btn btn-primary" data-goto="models">Browse Models</button>
         <button class="btn btn-ghost" data-goto="calc">Calculate Installment</button>
@@ -445,6 +583,81 @@
   </div>
 </section>
 
+<section class="section booking" id="booking">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="kicker">Next Step</div>
+        <h2 style="color:#fff;">Booking, test drive &amp; trade-in</h2>
+        <p style="color:var(--graphite-soft);">Fill in a few details and it goes straight to Amir on WhatsApp — no forms to submit, no waiting on a callback.</p>
+      </div>
+    </div>
+
+    <div class="bt-grid">
+      <div class="bt-card">
+        <h3>Booking / Test Drive</h3>
+        <p class="bt-sub">Isi maklumat dan WhatsApp Amir dengan butiran pilihan anda.</p>
+
+        <div class="field">
+          <label for="bkName">Nama</label>
+          <input type="text" id="bkName" placeholder="Nama penuh">
+        </div>
+        <div class="field">
+          <label for="bkPhone">No. Telefon</label>
+          <input type="tel" id="bkPhone" placeholder="01X-XXXXXXX">
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="bkModel">Model pilihan</label>
+            <select id="bkModel"></select>
+          </div>
+          <div class="field">
+            <label for="bkColour">Warna pilihan</label>
+            <select id="bkColour"></select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="bkPurpose">Tujuan</label>
+          <select id="bkPurpose">
+            <option>Booking</option>
+            <option>Test Drive</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="bkNote">Nota</label>
+          <textarea id="bkNote" rows="3" placeholder="Sebarang permintaan khas..."></textarea>
+        </div>
+        <a class="btn-red-block" id="bkWa" href="#" target="_blank" rel="noopener">Hantar ke WhatsApp Amir</a>
+      </div>
+
+      <div class="bt-card">
+        <h3>Trade-In</h3>
+        <p class="bt-sub">Dapatkan anggaran awal nilai kereta lama anda.</p>
+
+        <div class="field">
+          <label for="tiCar">Kereta semasa</label>
+          <input type="text" id="tiCar" placeholder="Contoh: Proton Persona 2020">
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="tiYear">Tahun</label>
+            <input type="number" id="tiYear" placeholder="2020">
+          </div>
+          <div class="field">
+            <label for="tiMileage">Anggaran mileage (km)</label>
+            <input type="number" id="tiMileage" placeholder="80000">
+          </div>
+        </div>
+        <div class="field">
+          <label for="tiLoan">Anggaran baki loan (RM)</label>
+          <input type="number" id="tiLoan" value="0">
+        </div>
+        <a class="btn-red-block" id="tiWa" href="#" target="_blank" rel="noopener">Minta Penilaian Trade-In</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer class="site">
   <div class="wrap foot-grid">
     <div class="foot-advisor">
@@ -452,7 +665,7 @@
       <h3>Amir Azlan</h3>
       <p>Reach out for the latest promotions, trade-in valuations, financing packages and test drive bookings across the full Proton range.</p>
       <div class="foot-contact">
-        <a class="btn btn-primary" href="tel:+60111722 6054">Call 011-722 6054</a>
+        <a class="btn btn-primary" href="tel:+60117226054">Call 011-722 6054</a>
         <a class="btn btn-wa" id="footWa" target="_blank" rel="noopener">WhatsApp Amir</a>
       </div>
     </div>
@@ -726,18 +939,37 @@
   });
 
   // ---------------- NAV ----------------
-  document.querySelectorAll("nav.links button").forEach(function(btn){
-    btn.addEventListener("click", function(){
-      document.querySelectorAll("nav.links button").forEach(function(b){b.classList.remove("active");});
-      btn.classList.add("active");
-      document.getElementById(btn.getAttribute("data-goto")).scrollIntoView({behavior:"smooth"});
+  var burgerBtn = document.getElementById("burgerBtn");
+  var mobileMenu = document.getElementById("mobileMenu");
+
+  function closeMobileMenu(){
+    mobileMenu.classList.remove("open");
+    burgerBtn.setAttribute("aria-expanded", "false");
+  }
+  burgerBtn.addEventListener("click", function(){
+    var isOpen = mobileMenu.classList.toggle("open");
+    burgerBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  });
+
+  function goToSection(id){
+    document.querySelectorAll("nav.links button, .mobile-menu button").forEach(function(b){
+      b.classList.toggle("active", b.getAttribute("data-goto") === id);
     });
+    document.getElementById(id).scrollIntoView({behavior:"smooth"});
+    closeMobileMenu();
+  }
+
+  document.querySelectorAll("nav.links button, .mobile-menu button").forEach(function(btn){
+    btn.addEventListener("click", function(){ goToSection(btn.getAttribute("data-goto")); });
   });
   document.querySelectorAll("[data-goto]").forEach(function(btn){
-    if(btn.tagName === "BUTTON" && !btn.closest("nav.links")){
-      btn.addEventListener("click", function(){
-        document.getElementById(btn.getAttribute("data-goto")).scrollIntoView({behavior:"smooth"});
-      });
+    if(btn.tagName === "BUTTON" && !btn.closest("nav.links") && !btn.closest(".mobile-menu")){
+      btn.addEventListener("click", function(){ goToSection(btn.getAttribute("data-goto")); });
+    }
+  });
+  document.addEventListener("click", function(e){
+    if(mobileMenu.classList.contains("open") && !mobileMenu.contains(e.target) && e.target !== burgerBtn && !burgerBtn.contains(e.target)){
+      closeMobileMenu();
     }
   });
 
@@ -866,6 +1098,79 @@
       calcMsg(m.name, v.name, moneyWhole(price), moneyWhole(dpAmount), years, rate, moneyWhole(monthly))
     );
   }
+
+  // ---------------- BOOKING / TEST DRIVE FORM ----------------
+  var bkModel = document.getElementById("bkModel");
+  var bkColour = document.getElementById("bkColour");
+  var bkName = document.getElementById("bkName");
+  var bkPhone = document.getElementById("bkPhone");
+  var bkPurpose = document.getElementById("bkPurpose");
+  var bkNote = document.getElementById("bkNote");
+  var bkWa = document.getElementById("bkWa");
+
+  MODELS.forEach(function(m, i){
+    var opt = document.createElement("option");
+    opt.value = i; opt.textContent = m.name;
+    bkModel.appendChild(opt);
+  });
+
+  function populateBkColours(){
+    var model = MODELS[parseInt(bkModel.value,10)];
+    bkColour.innerHTML = "";
+    if(model.colours.length){
+      model.colours.forEach(function(c){
+        var opt = document.createElement("option");
+        opt.value = c; opt.textContent = c;
+        bkColour.appendChild(opt);
+      });
+    } else {
+      var opt = document.createElement("option");
+      opt.value = "-"; opt.textContent = "Tanya Amir untuk pilihan warna";
+      bkColour.appendChild(opt);
+    }
+  }
+  bkModel.addEventListener("change", populateBkColours);
+  populateBkColours();
+
+  function bookingFormMsg(){
+    var model = MODELS[parseInt(bkModel.value,10)];
+    var name = bkName.value.trim() || "-";
+    var phone = bkPhone.value.trim() || "-";
+    var colour = bkColour.value || "-";
+    var purpose = bkPurpose.value;
+    var note = bkNote.value.trim() || "-";
+    return "Hi Amir, saya nak "+purpose+".\n\nNama: "+name+"\nTelefon: "+phone+"\nModel: "+model.name+"\nWarna: "+colour+"\nNota: "+note;
+  }
+  function refreshBkLink(){
+    bkWa.href = waLink(bookingFormMsg());
+  }
+  [bkModel, bkColour, bkName, bkPhone, bkPurpose, bkNote].forEach(function(el){
+    el.addEventListener("input", refreshBkLink);
+    el.addEventListener("change", refreshBkLink);
+  });
+  refreshBkLink();
+
+  // ---------------- TRADE-IN FORM ----------------
+  var tiCar = document.getElementById("tiCar");
+  var tiYear = document.getElementById("tiYear");
+  var tiMileage = document.getElementById("tiMileage");
+  var tiLoan = document.getElementById("tiLoan");
+  var tiWa = document.getElementById("tiWa");
+
+  function tradeInMsg(){
+    var car = tiCar.value.trim() || "-";
+    var year = tiYear.value.trim() || "-";
+    var mileage = tiMileage.value.trim() || "-";
+    var loan = tiLoan.value.trim() || "0";
+    return "Hi Amir, saya nak dapatkan anggaran Trade-In.\n\nKereta semasa: "+car+"\nTahun: "+year+"\nAnggaran mileage: "+mileage+" km\nAnggaran baki loan: RM "+loan+"\n\nBoleh bantu overview?";
+  }
+  function refreshTiLink(){
+    tiWa.href = waLink(tradeInMsg());
+  }
+  [tiCar, tiYear, tiMileage, tiLoan].forEach(function(el){
+    el.addEventListener("input", refreshTiLink);
+  });
+  refreshTiLink();
 })();
 </script>
 </body>
